@@ -305,4 +305,27 @@
    * Initiate Pure Counter
    */
   new PureCounter();
+  
+  // Function to get the Offsets of the passed in element.
+  function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
+
+  // Code to Change Value of form Subject on Clicking any of the buy now button at pricing section
+  let dynamicFormSubject = ()=> {
+    const form = document.getElementById('sendMessage');
+    const buyNowBtEls = document.querySelectorAll(".btn-wrap");
+    const formYCoordinates = getOffset(form).top;
+    buyNowBtEls.forEach((buyNowBtEl, index)=>{
+      buyNowBtEl.addEventListener('click',() => {
+        window.scrollTo(0 ,formYCoordinates);
+      })
+    })
+  }
+
+dynamicFormSubject();
 })();
